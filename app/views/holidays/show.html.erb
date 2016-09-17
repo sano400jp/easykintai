@@ -1,0 +1,25 @@
+<%- model_class = Holiday -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:yyyy) %>:</strong></dt>
+  <dd><%= @holiday.yyyy %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:mm) %>:</strong></dt>
+  <dd><%= @holiday.mm %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:dd) %>:</strong></dt>
+  <dd><%= @holiday.dd %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @holiday.name %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              holidays_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_holiday_path(@holiday), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              holiday_path(@holiday),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
