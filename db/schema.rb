@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917142654) do
+ActiveRecord::Schema.define(version: 20160917145105) do
 
   create_table "holidays", force: :cascade do |t|
     t.string "yyyy", limit: 255, null: false
@@ -21,5 +21,17 @@ ActiveRecord::Schema.define(version: 20160917142654) do
   end
 
   add_index "holidays", ["yyyy", "mm", "dd"], name: "index_holidays_on_yyyy_and_mm_and_dd", unique: true, using: :btree
+
+  create_table "shains", force: :cascade do |t|
+    t.string  "no",          limit: 3,                  null: false
+    t.string  "name",        limit: 255
+    t.string  "name_kana",   limit: 255
+    t.string  "login_id",    limit: 255
+    t.string  "login_pw",    limit: 255
+    t.string  "shain_kbn",   limit: 255
+    t.boolean "zaiseki_flg",             default: true
+  end
+
+  add_index "shains", ["no"], name: "index_shains_on_no", using: :btree
 
 end

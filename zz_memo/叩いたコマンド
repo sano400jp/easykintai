@@ -1,4 +1,5 @@
 ■社員マスタ追加
+rails g scaffold Shain no:string name:string name_kana:string login_id:string login_pw:string shain_kbn:string zaiseki_flg:boolean
 
 
 ■祭日マスタ追加
