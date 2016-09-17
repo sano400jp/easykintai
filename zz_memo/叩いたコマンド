@@ -2,7 +2,7 @@
 
 
 ■祭日マスタ追加
-
+rails g scaffold Holiday yyyy:string mm:string dd:string name:string
 
 ■勤怠区分マスタ追加
 
