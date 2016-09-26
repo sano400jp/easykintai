@@ -1,0 +1,90 @@
+<%= form_for @kintai, :html => { :class => "form-horizontal kintai" } do |f| %>
+
+  <% if @kintai.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@kintai.errors.count, "error") %> prohibited this kintai from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @kintai.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :shain_no, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :shain_no, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:shain_no) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :yyyy, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :yyyy, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:yyyy) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :mm, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :mm, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:mm) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :dd, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :dd, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:dd) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :kintai_kbn_cd, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :kintai_kbn_cd, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:kintai_kbn_cd) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :start_time, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :start_time, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:start_time) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :end_time, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :end_time, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:end_time) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :normal_hours, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :normal_hours, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:normal_hours) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :break_hours, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :break_hours, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:break_hours) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                kintais_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

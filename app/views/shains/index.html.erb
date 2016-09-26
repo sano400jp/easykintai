@@ -1,26 +1,23 @@
 <%- model_class = Shain -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1>社員マスタメンテナンス</h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:no) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:name_kana) %></th>
-      <th><%= model_class.human_attribute_name(:login_id) %></th>
-      <th><%= model_class.human_attribute_name(:login_pw) %></th>
-      <th><%= model_class.human_attribute_name(:shain_kbn) %></th>
-      <th><%= model_class.human_attribute_name(:zaiseki_flg) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>社員番号</th>
+      <th>氏名</th>
+      <th>氏名かな</th>
+      <th>ログインID</th>
+      <th>ログインPW</th>
+      <th>社員区分</th>
+      <th>在籍</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @shains.each do |shain| %>
       <tr>
-        <td><%= link_to shain.id, shain_path(shain) %></td>
         <td><%= shain.no %></td>
         <td><%= shain.name %></td>
         <td><%= shain.name_kana %></td>
@@ -28,7 +25,6 @@
         <td><%= shain.login_pw %></td>
         <td><%= shain.shain_kbn %></td>
         <td><%= shain.zaiseki_flg %></td>
-        <td><%=l shain.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_shain_path(shain), :class => 'btn btn-default btn-xs' %>

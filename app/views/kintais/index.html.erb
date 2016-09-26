@@ -1,0 +1,142 @@
+<%- model_class = Kintai -%>
+<div style="width: 100%; padding: 0px 10px 0px 20px;">
+<div class="page-header">
+  <h1>勤怠入力</h1>
+</div>
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr style="background-color: skyblue">
+      <th width="80px" style="min-width:80px;"><div class="text-center">日付</div></th>
+      <th width="70px" style="min-width:80px;"><div class="text-center">区分</div></th>
+      <th style="min-width:100px;"><div class="text-center">始業時間</div></th>
+      <th style="min-width:100px;"><div class="text-center">就業時間</div></th>
+      <th class="hidden-xs hidden-sm hidden-md" style="min-width:100px;"><div class="text-center">所定時間</div></th>
+      <th class="hidden-xs hidden-sm hidden-md" style="min-width:100px;"><div class="text-center">休憩時間</div></th>
+      <th style="min-width:100px;"><div class="text-center">勤務時間</div></th>
+      <th style="min-width:100px;"><div class="text-center">残業時間</div></th>
+      <!-- <th><div class="text-center">id</div></th> -->
+      <th width="50px" style="min-width:50px;"><div class="text-center">入力</div></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @mkintai.each do |mkin| %>
+      <% if mkin[1]["line_bk_color"] == "" then %>
+      <tr>
+      <% else %>
+      <tr style="background-color: <%= mkin[1]["line_bk_color"] %>">
+      <% end %>
+        <% if mkin[1]["holiday_name"] == "" then %>
+          <td><div class="text-center"><%= mkin[1]["dw"] %></div></td>
+        <% else %>
+          <td><div class="text-center" Title="<%= mkin[1]["holiday_name"] %>"><%= mkin[1]["dw"] %></div></td>
+        <% end %>
+        <td><div class="text-center"><%= mkin[1]["kintai_kbn"] %></div></td>
+        <td><div class="text-center"><%= mkin[1]["start_time"] %></div></td>
+        <td><div class="text-center"><%= mkin[1]["end_time"] %></div></td>
+        <td class="hidden-xs hidden-sm hidden-md"><div class="text-center"><%= mkin[1]["normal_hours"] %></div></td>
+        <td class="hidden-xs hidden-sm hidden-md"><div class="text-center"><%= mkin[1]["break_hours"] %></div></td>
+        <td><div class="text-center"><%= mkin[1]["working_hours"] %></div></td>
+        <td><div class="text-center"><%= mkin[1]["extra_hours"] %></div></td>
+        <!-- <td><div class="text-center"><%= mkin[1]["id"] %></div></td> -->
+        <td>
+          <div class="text-center">
+            <% if mkin[1]["id"] == "" %>
+              <%= link_to '　', new_kintai_by_dd_path(dd: mkin[1]["dd"]), :class => 'btn btn-default btn-xs' %>
+            <% else %>
+              <%= link_to '　', edit_kintai_path(mkin[1]["id"]), :class => 'btn btn-default btn-xs' %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    <tr style="background-color: pink">
+      <td><div class="text-center">要出勤日数</div></td>
+      <td><div class="text-center">出勤日数</div></td>
+      <td></td>
+      <td></td>
+      <td class="hidden-xs hidden-sm hidden-md"></td>
+      <td class="hidden-xs hidden-sm hidden-md"></td>
+      <td><div class="text-center">合計勤務時間</div></td>
+      <td><div class="text-center">合計残業時間</div></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><div class="text-center"><%= @defoult_working_days_cnt %></div></td>
+      <td><div class="text-center"><%= @working_days_cnt %></div></td>
+      <td></td>
+      <td></td>
+      <td class="hidden-xs hidden-sm hidden-md"></td>
+      <td class="hidden-xs hidden-sm hidden-md"></td>
+      <td><div class="text-center"><%= @working_hours_sum %></div></td>
+      <td><div class="text-center"><%= @extra_hours_sum %></div></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<div>for dev sta ------------------------------------------------------------------</div>
+<div class="row">
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">画面</div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">xs</div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">sm</div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">md</div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">lg</div>
+</div>
+<div class="row">
+  <div class="col-xs-1        col-sm-1        col-md-1        col-lg-1
+              col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-4">●</div>
+</div>
+<div>for dev end -----------------------------------------------------------------</div>
+</div>
+
+
+<!--
+<%- model_class = Kintai -%>
+<div class="page-header">
+  <h1>勤怠</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:yyyy) %></th>
+      <th><%= model_class.human_attribute_name(:mm) %></th>
+      <th><%= model_class.human_attribute_name(:dd) %></th>
+      <th>勤怠区分</th>
+      <th>始業時刻</th>
+      <th>終業時刻</th>
+      <th class="hidden-md">規定時間</th>
+      <th class="hidden-md">休憩時間</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @kintais.each do |kintai| %>
+      <tr>
+        <td><%= kintai.yyyy %></td>
+        <td><%= kintai.mm %></td>
+        <td><%= kintai.dd %></td>
+        <td><%= kintai.kintai_kbn_cd %></td>
+        <td><%= kintai.start_time %></td>
+        <td><%= kintai.end_time %></td>
+        <td class="hidden-md"><%= kintai.normal_hours %></td>
+        <td class="hidden-md"><%= kintai.break_hours %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_kintai_path(kintai), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      kintai_path(kintai),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_kintai_path,
+            :class => 'btn btn-primary' %>
+-->

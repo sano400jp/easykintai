@@ -1,16 +1,24 @@
-■社員マスタ追加
+■社員マスタ追加（追加済み）
 rails g scaffold Shain no:string name:string name_kana:string login_id:string login_pw:string shain_kbn:string zaiseki_flg:boolean
+rake db:migrate
+rails g bootstrap:themed Shains
 
-
-■祭日マスタ追加
+■祭日マスタ追加（追加済み）
 rails g scaffold Holiday yyyy:string mm:string dd:string name:string
 rake db:migrate
 rails g bootstrap:themed Holidays
 
-■勤怠区分マスタ追加
-
+■勤怠区分マスタ追加（仕様未定）
+rails g scaffold Kintai_kbn code:string name:string
+rake db:migrate
+rails g bootstrap:themed Kintai_kbns
 
 ■社員区分マスタ追加（仕様未定）
+rails g scaffold Shain_kbn code:string name:string
+rake db:migrate
+rails g bootstrap:themed Shain_kbns
 
-
-■勤怠トラン追加
+■勤怠トラン追加（追加済み）
+rails g scaffold Kintai shain_no:string yyyy:string mm:string dd:string kintai_kbn_cd:string start_time:time end_time:time normal_hours:decimal break_hours:decimal
+rake db:migrate
+rails g bootstrap:themed Kintais

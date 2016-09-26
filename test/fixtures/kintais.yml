@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shain_no: MyString
+  yyyy: MyString
+  mm: MyString
+  dd: MyString
+  kintai_kbn_cd: MyString
+  start_time: 2016-09-17 16:19:22
+  end_time: 2016-09-17 16:19:22
+  normal_hours: 9.99
+  break_hours: 9.99
+
+two:
+  shain_no: MyString
+  yyyy: MyString
+  mm: MyString
+  dd: MyString
+  kintai_kbn_cd: MyString
+  start_time: 2016-09-17 16:19:22
+  end_time: 2016-09-17 16:19:22
+  normal_hours: 9.99
+  break_hours: 9.99

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917145105) do
+ActiveRecord::Schema.define(version: 20160917161922) do
 
   create_table "holidays", force: :cascade do |t|
     t.string "yyyy", limit: 255, null: false
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(version: 20160917145105) do
   end
 
   add_index "holidays", ["yyyy", "mm", "dd"], name: "index_holidays_on_yyyy_and_mm_and_dd", unique: true, using: :btree
+
+  create_table "kintais", force: :cascade do |t|
+    t.string  "shain_no",      limit: 255,                                       null: false
+    t.string  "yyyy",          limit: 255,                                       null: false
+    t.string  "mm",            limit: 255,                                       null: false
+    t.string  "dd",            limit: 255,                                       null: false
+    t.string  "kintai_kbn_cd", limit: 255
+    t.time    "start_time"
+    t.time    "end_time"
+    t.decimal "normal_hours",              precision: 3, scale: 1, default: 7.5
+    t.decimal "break_hours",               precision: 3, scale: 1, default: 1.0
+  end
+
+  add_index "kintais", ["shain_no", "yyyy", "mm", "dd"], name: "index_kintais_on_shain_no_and_yyyy_and_mm_and_dd", unique: true, using: :btree
 
   create_table "shains", force: :cascade do |t|
     t.string  "no",          limit: 3,                  null: false

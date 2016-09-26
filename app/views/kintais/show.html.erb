@@ -1,0 +1,35 @@
+<%- model_class = Kintai -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:shain_no) %>:</strong></dt>
+  <dd><%= @kintai.shain_no %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:yyyy) %>:</strong></dt>
+  <dd><%= @kintai.yyyy %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:mm) %>:</strong></dt>
+  <dd><%= @kintai.mm %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:dd) %>:</strong></dt>
+  <dd><%= @kintai.dd %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:kintai_kbn_cd) %>:</strong></dt>
+  <dd><%= @kintai.kintai_kbn_cd %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:start_time) %>:</strong></dt>
+  <dd><%= @kintai.start_time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:end_time) %>:</strong></dt>
+  <dd><%= @kintai.end_time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:normal_hours) %>:</strong></dt>
+  <dd><%= @kintai.normal_hours %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:break_hours) %>:</strong></dt>
+  <dd><%= @kintai.break_hours %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              kintais_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_kintai_path(@kintai), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              kintai_path(@kintai),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
