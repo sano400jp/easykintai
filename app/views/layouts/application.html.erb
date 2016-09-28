@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>らくちん勤怠</title>
+  <title>かんたん勤怠</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'bootstrap-clockpicker', media: 'all' %>
+  <%= javascript_include_tag 'bootstrap-clockpicker' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
+
+
+<div>for dev sta ------------------------------------------------------------------</div>
+<div class="row">
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">画面</div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">xs</div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">sm</div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">md</div>
+  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">lg</div>
+</div>
+<div class="row">
+  <div class="col-xs-1        col-sm-1        col-md-1        col-lg-1
+              col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-4">●</div>
+</div>
+<div>for dev end -----------------------------------------------------------------</div>
+</div>
 
 </body>
 </html>

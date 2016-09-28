@@ -9,7 +9,7 @@ rake db:migrate
 rails g bootstrap:themed Holidays
 
 ■勤怠区分マスタ追加（仕様未定）
-rails g scaffold Kintai_kbn code:string name:string
+rails g scaffold Kintai_kbn code:string name:string am:boolean pm:boolean
 rake db:migrate
 rails g bootstrap:themed Kintai_kbns
 

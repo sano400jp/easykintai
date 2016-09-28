@@ -37,15 +37,15 @@ class KintaisController < ApplicationController
       dd = cur_day.strftime("%d")
       ww = cur_day.strftime("%w")
       dw = cur_day.strftime("%d(#{%w(日 月 火 水 木 金 土)[cur_day.wday]})")
-      kintai_kbn = ""
-      start_time = ""
-      end_time = ""
-      normal_hours = ""
-      break_hours = ""
+      kintai_kbn    = ""
+      start_time    = ""
+      end_time      = ""
+      normal_hours  = ""
+      break_hours   = ""
       working_hours = ""
-      extra_hours = ""
+      extra_hours   = ""
       
-      holiday_name = ""
+      holiday_name  = ""
       
       # 行背景カラー設定
       line_bk_color = ""
@@ -57,10 +57,11 @@ class KintaisController < ApplicationController
       if ww == "0" then
         line_bk_color = "lavenderblush"
       end
-      # 祭日
+      # 休日
       if holidayname[dd] != nil then
         line_bk_color = "lavenderblush"
         holiday_name = holidayname[dd]["name"]
+        @defoult_working_days_cnt = @defoult_working_days_cnt - 1
       end
       # 本日
       if cur_day.strftime("%Y%m%d") == now.strftime("%Y%m%d") then
@@ -94,7 +95,7 @@ class KintaisController < ApplicationController
         # 合計残業時間
         @extra_hours_sum = @extra_hours_sum + extra_hours.to_f
       end
-
+      
       @mkintai[cur_day.strftime("%d")] = {
           "id"            => id \
         , "dd"            => dd \
@@ -118,15 +119,44 @@ class KintaisController < ApplicationController
   # GET /kintais/1
   # GET /kintais/1.json
   def show
+    @show_kintai = {}
+    @show_kintai["ymdw"] = afnc_ymdw(@kintai.yyyy, @kintai.mm, @kintai.dd)
+    @show_kintai["kintai_kbn"]    = @kintai.kintai_kbn_cd   # おいおい区分名を渡すようにしたい
+    @show_kintai["start_time"]    = @kintai.start_time == nil ? "" : @kintai.start_time.strftime("%H:%M")
+    @show_kintai["end_time"]      = @kintai.end_time == nil ? "" : @kintai.end_time.strftime("%H:%M")
+    @show_kintai["normal_hours"]  = @kintai.normal_hours
+    @show_kintai["break_hours"]   = @kintai.break_hours
+    @show_kintai["working_hours"] = (@kintai.start_time == nil or @kintai.end_time == nil) ? "" : (@kintai.end_time - @kintai.start_time)/60/60 - @kintai.break_hours
+    @show_kintai["extra_hours"]   = (@kintai.start_time == nil or @kintai.end_time == nil) ? "" : (@kintai.end_time - @kintai.start_time)/60/60 - @kintai.break_hours - @kintai.normal_hours
+    
   end
 
   # GET /kintais/new
   def new
     @kintai = Kintai.new
+    @kintai.shain_no = @@shain_no
+    @kintai.yyyy = @@yyyy
+    @kintai.mm = @@mm
+    dd = params[:dd]
+    @kintai.dd = dd
+    @ymdw_disp = afnc_ymdw(@kintai.yyyy, @kintai.mm, dd)
   end
 
   # GET /kintais/1/edit
   def edit
+    @ymdw_disp = afnc_ymdw(@kintai.yyyy, @kintai.mm, @kintai.dd)
+    if @kintai.start_time != nil then
+      @kintai.start_time = @kintai.start_time.strftime("%H:%M")
+    end
+    if @kintai.end_time != nil then
+      @kintai.end_time = @kintai.end_time.strftime("%H:%M")
+    end
+    if @kintai.normal_hours == nil then
+      @kintai.normal_hours = 7.5
+    end
+    if @kintai.break_hours == nil then
+      @kintai.break_hours = 1.0
+    end
   end
 
   # POST /kintais
@@ -177,6 +207,15 @@ class KintaisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def kintai_params
-      params.require(:kintai).permit(:shain_no, :yyyy, :mm, :dd, :kintai_kbn_cd, :start_time, :end_time, :normal_hours, :break_hours)
+      params.require(:kintai).permit(:shain_no \
+                                   , :yyyy \
+                                   , :mm \
+                                   , :dd \
+                                   , :kintai_kbn_cd \
+                                   , :start_time \
+                                   , :end_time \
+                                   , :normal_hours \
+                                   , :break_hours \
+                                   )
     end
 end

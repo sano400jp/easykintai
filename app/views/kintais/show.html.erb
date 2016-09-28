@@ -1,27 +1,23 @@
 <%- model_class = Kintai -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= @show_kintai["ymdw"] %> 勤怠</h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:shain_no) %>:</strong></dt>
-  <dd><%= @kintai.shain_no %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:yyyy) %>:</strong></dt>
-  <dd><%= @kintai.yyyy %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:mm) %>:</strong></dt>
-  <dd><%= @kintai.mm %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:dd) %>:</strong></dt>
-  <dd><%= @kintai.dd %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:kintai_kbn_cd) %>:</strong></dt>
-  <dd><%= @kintai.kintai_kbn_cd %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:start_time) %>:</strong></dt>
-  <dd><%= @kintai.start_time %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:end_time) %>:</strong></dt>
-  <dd><%= @kintai.end_time %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:normal_hours) %>:</strong></dt>
-  <dd><%= @kintai.normal_hours %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:break_hours) %>:</strong></dt>
+  <dt><strong>勤怠区分:</strong></dt>
+  <dd><%= @show_kintai["kintai_kbn"] %></dd>
+  <dt><strong>始業時間:</strong></dt>
+  <dd><%= @show_kintai["start_time"] %></dd>
+  <dt><strong>終業時間:</strong></dt>
+  <dd><%= @show_kintai["end_time"] %></dd>
+  <dt><strong>規定時間:</strong></dt>
+  <dd><%= @show_kintai["normal_hours"] %></dd>
+  <dt><strong>休憩時間:</strong></dt>
   <dd><%= @kintai.break_hours %></dd>
+  <dt><strong>勤務時間:</strong></dt>
+  <dd><%= @show_kintai["working_hours"] %></dd>
+  <dt><strong>残業時間:</strong></dt>
+  <dd><%= @show_kintai["extra_hours"] %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
