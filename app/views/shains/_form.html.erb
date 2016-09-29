@@ -51,6 +51,13 @@
     <%=f.error_span(:login_pw) %>
   </div>
   <div class="form-group">
+    <%= f.label '社員区分', :class => 'control-label col-sm-2 col-md-2 col-lg-2' %>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <%= f.text_field :shain_kbn, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:shain_kbn) %>
+  </div>
+  <div class="form-group">
     <%= f.label '在籍', :class => 'control-label col-xs-12 col-sm-2 col-md-2 col-lg-2' %>
     <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1">
       <%= f.check_box :zaiseki_flg, :class => 'form-control' %>
