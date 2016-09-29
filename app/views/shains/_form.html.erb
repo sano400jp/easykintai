@@ -16,6 +16,76 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label '社員番号', :class => 'control-label col-sm-2 col-md-2 col-lg-2' %>
+    <div class=" col-sm-2 col-md-2 col-lg-2">
+      <%= f.text_field :no, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:no) %>
+  </div>
+  <div class="form-group">
+    <%= f.label '氏名', :class => 'control-label col-sm-2 col-md-2 col-lg-2' %>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label '氏名カナ', :class => 'control-label col-sm-2 col-md-2 col-lg-2' %>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <%= f.text_field :name_kana, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:name_kana) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'ログインID', :class => 'control-label col-sm-2 col-md-2 col-lg-2' %>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <%= f.text_field :login_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:login_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'ログインパスワード', :class => 'control-label col-sm-2 col-md-2 col-lg-2' %>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <%= f.text_field :login_pw, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:login_pw) %>
+  </div>
+  <div class="form-group">
+    <%= f.label '在籍', :class => 'control-label col-xs-12 col-sm-2 col-md-2 col-lg-2' %>
+    <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1">
+      <%= f.check_box :zaiseki_flg, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:zaiseki_flg) %>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit @submit_value, :class => 'btn btn-primary' %>
+      <%= link_to '取消', shains_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>
+
+<!--
+<%= form_for @shain, :html => { :class => "form-horizontal shain" } do |f| %>
+
+  <% if @shain.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@shain.errors.count, "error") %> prohibited this shain from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @shain.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
     <%= f.label :no, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :no, :class => 'form-control' %>
@@ -67,10 +137,11 @@
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= f.submit "一覧", :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 shains_path, :class => 'btn btn-default' %>
     </div>
   </div>
 
 <% end %>
+-->

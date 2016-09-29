@@ -12,7 +12,8 @@
       <th>ログインPW</th>
       <th>社員区分</th>
       <th>在籍</th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>編集</th>
+      <th>削除</th>
     </tr>
   </thead>
   <tbody>
@@ -26,9 +27,11 @@
         <td><%= shain.shain_kbn %></td>
         <td><%= shain.zaiseki_flg %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to "　",
                       edit_shain_path(shain), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+        </td>
+        <td>
+          <%= link_to "　",
                       shain_path(shain),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
@@ -39,6 +42,6 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to "新規",
             new_shain_path,
             :class => 'btn btn-primary' %>
